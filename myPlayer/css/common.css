@@ -43,10 +43,6 @@ abbr, acronym {
 body{
     background-color: #3289d5;
 }
-
-
-
-/*游戏区*/
 /*************************布局****************************/
 .box{
     -webkit-box-sizing: border-box;
@@ -98,119 +94,14 @@ body{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    /*border: 1px solid #aaaaaa;*/
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0.9);
-    color: #ffffff;
-}
-.modalBox>h1{
-    width: 552px;
-    text-align: center;
-    font-size: 5rem;
-    margin: 0 auto;
 }
 .gesture{
     width: 552px;
-    margin: 10% auto;
-}
-.gesture>span{
-    display: inline-block;
-}
-.checkedGesture{
-
-}
-
-
-
-/*登录页面*/
-.hero{
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100px;
-    height: 100px;
-    border-top: 10px solid #0e3c6f;
-    border-left: 10px solid #0e3c6f;
-}
-.hero>img{
-    width: 100%;
-}
-.hero>.heroChecked:hover{
-    cursor: pointer;
-    background-color: rgba(0,0,0,0);
-}
-.heroBox{
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 310px;
-    /*height: 310px;*/
-    border-bottom: 10px solid #0e3c6f;
-    border-right: 10px solid #0e3c6f;
-    position: absolute;
-}
-.heroBox:after{
-    content: "";
-    clear: both;
-    display: block;
-}
-.heroChecked{
-    position: absolute;
-    width: 90px;
-    height: 90px;
-    box-shadow: ghostwhite;
-    background-color: rgba(0,0,0,0.7);
-}
-.top1{
-    top:10px;
-}
-.top2{
-    top:110px;
-}
-.top3{
-    top: 210px;
-}
-.title{
-    color:#ffffff;
-    font-size: 4rem;
-    text-align: center;
-    margin:0 auto;
-    width: 500px;
-}
-.boxCenter{
-    margin: 0 auto;
-    width:310px;
-    color:#ffffff;
-    text-align: center;
-}
-.boxCenter>h6{
-    font-size: 2rem;
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-.boxCenter>input{
-    background-color: #eeeeee;
-    border: 1px solid #0e3c6f;
-    color: #000000;
-    margin-top: 30px;
-    border-radius: 5px;
-    height: 30px;
-    padding: 0 10px;
-}
-.boxCenter:after{
-    content: "";
-    clear: both;
-    display: block;
-    height: 310px;
-}
-.login{
-    width: 200px;
-    height: 50px;
-    margin: 50px auto 0;
-    display: block;
-}
-.login:hover{
-    cursor: pointer;
+    margin: 15% auto;
 }
