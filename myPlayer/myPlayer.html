@@ -4,40 +4,44 @@
     <meta charset="UTF-8">
     <title>myPlayer</title>
     <link rel="stylesheet" href="css/common.css">
-    <script type="text/javascript" src="js/myApp.js"></script>
 </head>
 <body>
-    <div id="contentBox" class="box">
-        <div class="lf">
-            <div id="adversary" class="adversary"><img src="images/face/img_shixiang.jpg" alt="picture"></div>
-            <div id="adversaryInfo" class="adversaryInfo">
-                <h6>敌人姓名</h6>
-                <span>敌人id</span>
-                <span>敌人血量</span>
-            </div>
-        </div>
-        <div id="battlefield" class="battlefield lf">
-            <div id="gameBox" class="gameBox">
-                <div id="module"></div>
-            </div>
-            <div id="reportBox" class="reportBox">
-            </div>
-        </div>
-        <div class="rt">
-            <div id="myself" class="myself"><img src="images/face/img_kuangsan.jpg" alt="picture"></div>
-            <div id="myselfInfo" class="myselfInfo">
-                <h6>我方姓名</h6>
-                <span>我方id</span>
-                <span>我方血量</span>
-            </div>
+<div id="contentBox" class="box">
+    <div class="lf">
+        <div id="myself" class="myself"><img src="images/face/img_weidingyi.png" alt="picture"></div>
+        <div id="myselfInfo" class="myselfInfo">
+            <h6>我方</h6>
+            <!--<span>我方id</span>-->
+            <span>血量</span>
         </div>
     </div>
-    <div id="modalBox" class="modalBox">
-        <div id="gesture" class="gesture">
-            <span><img src="images/game/scissor.png" alt="scissor"/></span>
-            <span><img src="images/game/stone.png" alt="stone"/></span>
-            <span><img src="images/game/fabric.png" alt="fabric"/></span>
+    <div id="battlefield" class="battlefield lf">
+        <div id="gameBox" class="gameBox">
+            <div id="module"></div>
+        </div>
+        <div id="reportBox" class="reportBox">
         </div>
     </div>
+    <div class="rt">
+        <div id="adversary" class="adversary"><img src="images/face/img_weidingyi.png" alt="picture"></div>
+        <div id="adversaryInfo" class="adversaryInfo">
+            <h6>敌方姓名</h6>
+            <!--<span>敌方id</span>-->
+            <span>敌方2</span>
+        </div>
+    </div>
+</div>
+<div id="modalBox" class="modalBox" style="display: none">
+    <span class="rt close">X</span>
+    <h1>请选择手势</h1>
+    <div id="gesture" class="gesture">
+        <span><img src="images/game/scissor.png" alt="scissor"/></span>
+        <span><img src="images/game/stone.png" alt="stone"/></span>
+        <span><img src="images/game/fabric.png" alt="fabric"/></span>
+    </div>
+    <button id="confirm">确定</button>
+</div>
+<script src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/myApp.js"></script>
 </body>
 </html>

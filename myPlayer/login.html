@@ -12,7 +12,7 @@
         <label for="username">用户名：</label>
         <input type="text" id="username" name="username" placeholder="请输入用户名"/>
         <h6>请选择英雄</h6>
-        <div class="heroBox">
+        <div id="heroBox" class="heroBox">
             <div class="lf hero">
                 <img src="images/face/img_bawu.jpg" alt="picture"/>
                 <div class="heroChecked top1"></div>
@@ -52,9 +52,13 @@
         </div>
     </div>
     <button class="login" id="login">进入游戏</button>
-    <div class="modalBox">
-        <h1>请选择</h1>
-
+    <div id="loginModal" class="modalBox">
+        <span class="rt close">X</span>
+        <h1 class="mt">请选择</h1>
+        <div class="chooseButtonBox">
+            <button id="join" class="chooseButton" value="0">参战</button>
+            <button id="visit" class="chooseButton" value="1">观战</button>
+        </div>
     </div>
 </div>
 <script src="js/lib/jquery.js"></script>
