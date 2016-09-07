@@ -10,14 +10,21 @@
     <div class="lf">
         <div id="myself" class="myself"><img src="images/face/img_weidingyi.png" alt="picture"></div>
         <div id="myselfInfo" class="myselfInfo">
-            <h6>我方</h6>
+            <h6></h6>
             <!--<span>我方id</span>-->
-            <span>血量</span>
+            <span></span>
         </div>
     </div>
     <div id="battlefield" class="battlefield lf">
         <div id="gameBox" class="gameBox">
-            <div id="module"></div>
+            <div id="module">
+                <div style="visibility: hidden">
+                    <span id="myselfShow">my</span>
+                    <span><img src="images/game/vs.png" alt="vs"></span>
+                    <span id="adversaryShow">you</span>
+                </div>
+                <button id="finger">点击选择手势</button>
+            </div>
         </div>
         <div id="reportBox" class="reportBox">
         </div>
@@ -25,21 +32,24 @@
     <div class="rt">
         <div id="adversary" class="adversary"><img src="images/face/img_weidingyi.png" alt="picture"></div>
         <div id="adversaryInfo" class="adversaryInfo">
-            <h6>敌方姓名</h6>
+            <h6></h6>
             <!--<span>敌方id</span>-->
-            <span>敌方2</span>
+            <span></span>
         </div>
     </div>
 </div>
-<div id="modalBox" class="modalBox" style="display: none">
+<div id="modalBox" class="modalBox">
     <span class="rt close">X</span>
     <h1>请选择手势</h1>
     <div id="gesture" class="gesture">
-        <span><img src="images/game/scissor.png" alt="scissor"/></span>
-        <span><img src="images/game/stone.png" alt="stone"/></span>
-        <span><img src="images/game/fabric.png" alt="fabric"/></span>
+        <span id="finger_0"><img src="images/game/scissor.png" alt="scissor"/></span>
+        <span id="finger_1"><img src="images/game/stone.png" alt="stone"/></span>
+        <span id="finger_2"><img src="images/game/fabric.png" alt="fabric"/></span>
     </div>
     <button id="confirm">确定</button>
+    <div id="alertAction">
+        <span class="rt close">X</span>
+    </div>
 </div>
 <script src="js/lib/jquery.js"></script>
 <script type="text/javascript" src="js/myApp.js"></script>

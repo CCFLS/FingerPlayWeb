@@ -7,15 +7,16 @@ $(function(){
     }
     myGame.prototype = {
         init:function(){
+            var that = this;
+            //点击参战
             $(".modalBox").height(window.innerHeight);
             //选择人物
-            $("#heroBox").on("click",function(e){
-                //console.log(e.target);
+            $("#heroBox>.hero").on("click",function(e){
+                console.log(e.target);
                 $(".heroChecked").show();
-                $(e.target).hide();
-                //console.log($(e.target).prev());
-                var imgSrc = $(e.target).prev().attr("src");
-                return imgSrc;
+                $(".onlyChecked").removeClass("onlyChecked");
+                $(e.target).parent().addClass("onlyChecked");
+                $(".onlyChecked").children('div').hide();
             });
             //点击登录游戏
             $("#login").on("click",function () {
@@ -25,22 +26,50 @@ $(function(){
             $(".close").on("click",function(){
                 $(this).parent().hide(500);
             });
-            //点击参战
-            var that = this;
             $("#join").on("click",function(){
-                var parmas = {
-                    "userName": that.getUserName(),
-                    "type": that.getType(this)
+                var params = {
+                    userName: that.getUserName(),
+                    type: that.getType(this)
                 };
-                parmas = JSON.stringify(parmas);
-                parmas = "parmas="+parmas;
-                console.log(parmas);
+                var userImgSrc = that.getUserImage();
+                params = JSON.stringify(params);
+                params = "params="+params;
+                console.log(params);
+                // $.ajax({
+                //     type:  'GET',
+                //     url: 'http://101.200.228.199:8080/initUserStatus',
+                //     // url:'data/login.json',
+                //     data: params,
+                //     dataType : 'jsonp',
+                //     jsonp:"jsoncallback",
+                //     // jsonpCallback: 'getName',
+                //     beforeSend: function(){
+                //         console.log("ready");
+                //     },
+                //     error: function(){
+                //         console.log("error");
+                //     },
+                //     success: function(data){
+                //         console.log(data);
+                //         if(data.error !== "OK"){
+                //             return;
+                //         }
+                //         var userData = data.data;
+                //         userData.userImage = userImgSrc;
+                //         userData.userHP = 10;
+                //         console.log(userData);
+                //         window.location.href = "myPlayer.html?userData="+JSON.stringify(userData);
+                //     },
+                //     complete: function(){
+                //         console.log("complete");
+                //     }
+                // });
                 $.ajax({
                     type:  'GET',
                     // url: 'http://101.200.228.199:8080/initUserStatus',
                     url:'data/login.json',
-                    data: parmas,
-                    dataType: 'json',
+                    data: params,
+                    dataType : 'json',
                     beforeSend: function(){
                         console.log("ready");
                     },
@@ -48,11 +77,14 @@ $(function(){
                         console.log("error");
                     },
                     success: function(data){
-                        // console.log(data);
+                        console.log(data);
                         if(data.error !== "OK"){
                             return;
                         }
                         var userData = data.data;
+                        userData.userImage = userImgSrc;
+                        userData.userHP = 10;
+                        console.log(userData);
                         window.location.href = "myPlayer.html?userData="+JSON.stringify(userData);
                     },
                     complete: function(){
@@ -69,8 +101,10 @@ $(function(){
             //console.log($(data).val());
             return $(data).val();
         },
-        getUserImage:function(data){
-            return data;
+        getUserImage:function(){
+            var imgSrc = $(".onlyChecked").children("img").attr("src");
+            // console.log(imgSrc);
+            return imgSrc;
         }
     };
     var myGameStart = new myGame();

@@ -99,6 +99,42 @@ body{
 }
 .gameBox{
     height: 70%;
+    background-image: url(../images/game/link.png);
+    background-size: cover;
+}
+
+/*游戏操作界面*/
+.modalBox>h1{
+    width: 500px;
+    margin: 7% auto -7%;
+    font-size:3rem;
+    color: #ffffff;
+    text-align: center;
+}
+#confirm{
+    display: block;
+    margin: -2% auto;
+    width: 200px;
+    height: 50px;
+}
+#module{
+    height: 100%;
+}
+#module>button{
+    display: block;
+    margin: 10px auto 0;
+    width: 20%;
+    height: 15%;
+}
+#module>div{
+    height: 80%;
+    text-align: center;
+}
+#module>div>span{
+    width: 30%;
+}
+#module>div>span>img{
+    width: 30%;
 }
 /**********************模态框**************************/
 .modalBox{
@@ -127,9 +163,17 @@ body{
     display: inline-block;
 }
 .checkedGesture{
-
+    background: #ffffff;
 }
-
+#alertAction{
+    display: none;
+    width: 70%;
+    height: 70%;
+    background-color: #0e3c6f;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+}
 
 
 /*登录页面*/
@@ -171,6 +215,7 @@ body{
     box-shadow: ghostwhite;
     background-color: rgba(0,0,0,0.7);
 }
+.onlyChecked{}
 .top1{
     top:10px;
 }
@@ -250,17 +295,3 @@ body{
 
 
 
-/*游戏操作界面*/
-.modalBox>h1{
-    width: 500px;
-    margin: 7% auto -7%;
-    font-size:3rem;
-    color: #ffffff;
-    text-align: center;
-}
-#confirm{
-    display: block;
-    margin: -10% auto;
-    width: 200px;
-    height: 50px;
-}

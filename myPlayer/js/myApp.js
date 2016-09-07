@@ -1,9 +1,6 @@
 /**
  * Created by seven on 2016/8/21.
  */
-window.onload = function () {
-
-};
 $(function(){
     function myApp(){
         this.init();
@@ -24,18 +21,101 @@ $(function(){
             this.setUserImage(userData);
             this.setUserName(userData);
             this.setUserHP(userData);
+            var that = this;
+            $.ajax({
+                // url: 'http://101.200.228.199:8080/checkTheOtherSide',
+                url:'data/check.json',
+                data: {},
+                dataType: 'json',
+                beforeSend: function(){
+                    console.log("ready");
+                },
+                error: function(){
+                    console.log("error");
+                },
+                success: function(data){
+                    // console.log(data);
+                    if(data.error !== "OK"){
+                        return;
+                    }
+                    var adversaryData = data.data;
+                    adversaryData.userHP = 10;
+                    // console.log(adversaryData);
+                    that.setAdversaryImage(adversaryData);
+                    that.setAdversaryName(adversaryData);
+                    that.setAdversaryHP(adversaryData);
+                },
+                complete: function(){
+                    console.log("complete");
+                }
+            });
+            //点击选择手势
+            $("#finger").on("click",function(){
+                $("#modalBox").show(500);
+            });
+            //选择手势
+            $("#gesture").on("click",function(e){
+                // console.log($(e.target));
+                $(this).children('span').removeClass("checkedGesture");
+                $(e.target).parent().addClass("checkedGesture");
+            });
+            //点击确定按钮
+            $("#confirm").on("click",function () {
+                that.finger(userData);
+            });
+            //点击关闭按钮
+            $(".close").on("click",function(){
+                $(this).parent().hide(500);
+            });
         },
-        finger:function(){
-
+        finger:function(data){
+            var params = {};
+            params.userToken = data.userToken;
+            params.action = $(".checkedGesture").attr('id').slice(-1);
+            params = JSON.stringify(params);
+            params = "params="+params;
+            console.log(params);
+            $.ajax({
+                // url: 'http://101.200.228.199:8080/checkTheOtherSide',
+                url:'data/sumbitAction.json',
+                data: {},
+                dataType: 'json',
+                beforeSend: function(){
+                    console.log("ready");
+                },
+                error: function(){
+                    console.log("error");
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data.error !== "OK"){
+                        $("#alertAction").show();
+                        return;
+                    }
+                    $("#modalBox").hide(500);
+                },
+                complete: function(){
+                    console.log("complete");
+                }
+            });
         },
         setUserImage:function(data){
-            $("#myself").children().attr("src","images/face/img_shidao.jpg");
+            $("#myself").children().attr("src",data.userImage);
         },
         setUserName:function(data){
             $("#myselfInfo").children('h6').html(data.userName);
         },
         setUserHP:function(data){
-            $("#myselfInfo").children('span').html("HP："+10);
+            $("#myselfInfo").children('span').html("HP："+data.userHP);
+        },
+        setAdversaryImage:function(data){
+            // $("#adversary").children().attr("src",data.userImage);
+        },
+        setAdversaryName:function(data){
+            $("#adversaryInfo").children('h6').html(data.userName);
+        },
+        setAdversaryHP:function(data){
+            $("#adversaryInfo").children('span').html("HP："+data.userHP);
         },
         getRequest:function(){
             var url = location.search; //获取url中"?"符后的字串
