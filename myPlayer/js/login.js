@@ -8,6 +8,11 @@ $(function(){
     myGame.prototype = {
         init:function(){
             var that = this;
+            $("#username").focus();
+            //光标离开用户名输入框
+            $("#username").on("blur",function () {
+                that.checkUserName();
+            });
             //点击参战
             $(".modalBox").height(window.innerHeight);
             //选择人物
@@ -105,6 +110,21 @@ $(function(){
             var imgSrc = $(".onlyChecked").children("img").attr("src");
             // console.log(imgSrc);
             return imgSrc;
+        },
+        checkUserName:function(){
+            console.log($("#username").val());
+            if($("#username").val()===""){
+                $("#userCheckInfo").html("请输入用户名");
+                $("#username").focus();
+            }
+        },
+        isDisabled:function(){
+            //未选择，禁用确定按钮
+            if($('#gesture>.checkedGesture').length === 0){
+                $("#confirm").attr('disabled',true);
+            }else{
+                $("#confirm").attr('disabled',false);
+            }
         }
     };
     var myGameStart = new myGame();

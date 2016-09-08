@@ -21,6 +21,7 @@ $(function(){
             this.setUserImage(userData);
             this.setUserName(userData);
             this.setUserHP(userData);
+            this.isDisabled();
             var that = this;
             $.ajax({
                 // url: 'http://101.200.228.199:8080/checkTheOtherSide',
@@ -57,7 +58,8 @@ $(function(){
             $("#gesture").on("click",function(e){
                 // console.log($(e.target));
                 $(this).children('span').removeClass("checkedGesture");
-                $(e.target).parent().addClass("checkedGesture");
+                $(e.target).parent('span').addClass("checkedGesture");
+                that.isDisabled();
             });
             //点击确定按钮
             $("#confirm").on("click",function () {
@@ -66,7 +68,27 @@ $(function(){
             //点击关闭按钮
             $(".close").on("click",function(){
                 $(this).parent().hide(500);
+                $(".checkedGesture").removeClass("checkedGesture");
+                that.isDisabled();
             });
+            //点击外层关闭按钮，内层同样关闭
+            $('#modalBox>.close').on('click',function(){
+                $("#alertAction").hide();
+            });
+            //提交失败界面确定按钮
+            $("#alertAction").children('button').on("click",function(){
+                $(this).parent().hide(500);
+                $(".checkedGesture").removeClass("checkedGesture");
+                that.isDisabled();
+            });
+        },
+        isDisabled:function(){
+            //未选择手势，禁用确定按钮
+            if($('#gesture>.checkedGesture').length === 0){
+                $("#confirm").attr('disabled',true);
+            }else{
+                $("#confirm").attr('disabled',false);
+            }
         },
         finger:function(data){
             var params = {};
@@ -90,6 +112,7 @@ $(function(){
                     console.log(data);
                     if(data.error !== "OK"){
                         $("#alertAction").show();
+                        $("#alertAction").children("h1").html("服务器未响应，请重新选择手势！");
                         return;
                     }
                     $("#modalBox").hide(500);
