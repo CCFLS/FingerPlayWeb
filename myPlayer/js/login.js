@@ -9,19 +9,22 @@ $(function(){
         init:function(){
             var that = this;
             $("#username").focus();
+            this.isDisabled();
             //光标离开用户名输入框
             $("#username").on("blur",function () {
                 that.checkUserName();
+                that.isDisabled();
             });
             //点击参战
             $(".modalBox").height(window.innerHeight);
             //选择人物
             $("#heroBox>.hero").on("click",function(e){
-                console.log(e.target);
+                // console.log(e.target);
                 $(".heroChecked").show();
                 $(".onlyChecked").removeClass("onlyChecked");
-                $(e.target).parent().addClass("onlyChecked");
+                $(e.target).parent('.hero').addClass("onlyChecked");
                 $(".onlyChecked").children('div').hide();
+                that.isDisabled();
             });
             //点击登录游戏
             $("#login").on("click",function () {
@@ -112,18 +115,20 @@ $(function(){
             return imgSrc;
         },
         checkUserName:function(){
-            console.log($("#username").val());
+            // console.log($("#username").val());
             if($("#username").val()===""){
                 $("#userCheckInfo").html("请输入用户名");
                 $("#username").focus();
+            }else{
+                $("#userCheckInfo").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
             }
         },
         isDisabled:function(){
-            //未选择，禁用确定按钮
-            if($('#gesture>.checkedGesture').length === 0){
-                $("#confirm").attr('disabled',true);
+            //未输入用户名，未选择头像，禁用确定按钮
+            if(($('#username').val() == "")||($(".onlyChecked").length === 0)){
+                $("#login").attr('disabled',true);
             }else{
-                $("#confirm").attr('disabled',false);
+                $("#login").attr('disabled',false);
             }
         }
     };

@@ -63,7 +63,16 @@ $(function(){
             });
             //点击确定按钮
             $("#confirm").on("click",function () {
+                var _this = that;
                 that.finger(userData);
+                var status = that.checkResult(userData);
+                var timer = setInterval(function(){
+                    if(status != 2){
+                        _this.checkResult(userData);
+                    }else{
+                        clearInterval(timer);
+                    }
+                },1000);
             });
             //点击关闭按钮
             $(".close").on("click",function(){
@@ -98,9 +107,10 @@ $(function(){
             params = "params="+params;
             console.log(params);
             $.ajax({
-                // url: 'http://101.200.228.199:8080/checkTheOtherSide',
+                type:"GET",
+                // url: 'http://101.200.228.199:8080/sumbitAction',
                 url:'data/sumbitAction.json',
-                data: {},
+                data: params,
                 dataType: 'json',
                 beforeSend: function(){
                     console.log("ready");
@@ -116,6 +126,7 @@ $(function(){
                         return;
                     }
                     $("#modalBox").hide(500);
+                    $(".checkedGesture").removeClass("checkedGesture");
                 },
                 complete: function(){
                     console.log("complete");
@@ -152,6 +163,47 @@ $(function(){
             }
             console.log(JSON.parse(theRequest.userData));
             return JSON.parse(theRequest.userData);
+        },
+        checkResult:function(userData){
+            var that = this;
+            var params = {};
+            // console.log(userData);
+            params.userToken = userData.userToken;
+            // console.log(params);
+            $.ajax({
+                type:"GET",
+                // url: 'http://101.200.228.199:8080/sumbitAction',
+                url:'data/checkResult.json',
+                data: params,
+                dataType: 'json',
+                beforeSend: function(){
+                    console.log("ready");
+                },
+                error: function(){
+                    console.log("error");
+                },
+                success: function(data){
+                    // console.log(data);
+                    var status = 0;
+                    if(data.error !== "OK"){
+                        return status = 0;
+                    }else if(data.data.status!=2){
+                        return status = 1;
+                    }else{
+                        if(params.userToken === data.data.userInfo[0].userToken){
+                            that.setUserHP(data.data.userInfo[0]);
+                            that.setAdversaryHP(data.data.userInfo[1]);
+                        }else{
+                            that.setUserHP(data.data.userInfo[1]);
+                            that.setAdversaryHP(data.data.userInfo[0]);
+                        }
+                    }
+                    return status = 2;
+                },
+                complete: function(){
+                    console.log("complete");
+                }
+            });
         }
 
     };

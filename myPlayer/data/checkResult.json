@@ -1,0 +1,21 @@
+{
+  "error":"OK",
+  "data":
+  {
+    "status":"2",
+    "msg":"胜负已分",
+    "userInfo":
+    [
+      {
+        "userToken":"ef353010-5486-11e6-9e84-005056ae2472",
+        "userHP":"10",
+        "winner":"T"
+      },
+      {
+        "userToken":"ef353010-5888-11e6-9e84-005056ae2472",
+        "userHP":"9",
+        "winner":"F"
+      }
+    ]
+  }
+}
